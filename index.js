@@ -23,7 +23,7 @@ app.get("/*", async (req, res) => {
     res.status(response.status).json(response.data);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: true });
+    res.status(500).json({ redirect_error: true });
   }
 });
 
@@ -36,7 +36,7 @@ app.post("/*", async (req, res) => {
     res.status(response.status).json(response.data);
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: true });
+    res.status(500).json({ redirect_error: true });
   }
 });
 
