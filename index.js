@@ -16,7 +16,6 @@ app.use(function (req, res, next) {
 
 app.get("/*", async (req, res) => {
   try {
-    console.log(req.headers);
     let response = await axios.get(`http://${req.path}`, {
       headers: req.headers,
     });
@@ -29,7 +28,6 @@ app.get("/*", async (req, res) => {
 
 app.post("/*", async (req, res) => {
   try {
-    console.log(req.headers);
     let response = await axios.post(`http://${req.path}`, req.body, {
       headers: req.headers,
     });
