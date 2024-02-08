@@ -5,37 +5,25 @@ const app = express();
 app.use(express.json());
 app.use(function (req, res, next) {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "GET", "POST");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "X-Requested-With,content-type,Authorization"
-  );
+  res.setHeader("Access-Control-Allow-Methods", ["GET", "POST"]);
+  res.setHeader("Access-Control-Allow-Headers", "*");
+
   res.setHeader("Access-Control-Allow-Credentials", true);
   next();
 });
 
 app.get("/*", async (req, res) => {
-  try {
-    let response = await axios.get(`http://${req.path}`, {
-      headers: req.headers,
-    });
-    res.status(response.status).json(response.data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ redirect_error: true });
-  }
+  let response = await axios.get(`http://${req.path}`, {
+    headers: req.headers,
+  });
+  res.status(response.status).json(response.data);
 });
 
 app.post("/*", async (req, res) => {
-  try {
-    let response = await axios.post(`http://${req.path}`, req.body, {
-      headers: req.headers,
-    });
-    res.status(response.status).json(response.data);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ redirect_error: true });
-  }
+  let response = await axios.post(`http://${req.path}`, req.body, {
+    headers: req.headers,
+  });
+  res.status(response.status).json(response.data);
 });
 
 const PORT = process.env.PORT || 8080;
