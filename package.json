@@ -5,6 +5,7 @@
     "nodemon": "^3.0.3"
   },
   "scripts": {
-    "dev": "nodemon index"
+    "dev": "nodemon index",
+    "vercel-build": "echo hello world"
   }
 }
