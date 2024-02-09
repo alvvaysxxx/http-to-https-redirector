@@ -15,6 +15,9 @@ app.use(function (req, res, next) {
 app.get("/*", async (req, res) => {
   let response = await axios.get(`http://${req.path}`, {
     headers: req.headers,
+    validateStatus: function (status) {
+      return (status >= 200 && status < 300) || status === 304; // Разрешаем успешные статусы и 304
+    },
   });
   res.status(response.status).json(response.data);
 });
@@ -22,6 +25,9 @@ app.get("/*", async (req, res) => {
 app.post("/*", async (req, res) => {
   let response = await axios.post(`http://${req.path}`, req.body, {
     headers: req.headers,
+    validateStatus: function (status) {
+      return (status >= 200 && status < 300) || status === 304; // Разрешаем успешные статусы и 304
+    },
   });
   res.status(response.status).json(response.data);
 });
