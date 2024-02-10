@@ -24,6 +24,7 @@ app.get("/*", async (req, res) => {
     res.status(response.status).json(response.data);
   } catch (err) {
     console.error(err);
+    res.status(response.status).json(response.data);
   }
 });
 
@@ -39,6 +40,7 @@ app.post("/*", async (req, res) => {
     res.status(response.status).json(response.data);
   } catch (err) {
     console.error(err);
+    res.status(response.status).json(response.data);
   }
 });
 
