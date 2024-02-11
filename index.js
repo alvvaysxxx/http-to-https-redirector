@@ -21,10 +21,10 @@ app.get("/*", async (req, res) => {
         return (status >= 200 && status < 300) || status === 304; // Разрешаем успешные статусы и 304
       },
     });
-    res.status(response.status).json(response.data);
+    res.status(200).json(response.data);
   } catch (err) {
     console.error(err);
-    res.status(response.status).json(response.data);
+    res.status(500).json({ error: true });
   }
 });
 
@@ -37,10 +37,10 @@ app.post("/*", async (req, res) => {
         return (status >= 200 && status < 300) || status === 304; // Разрешаем успешные статусы и 304
       },
     });
-    res.status(response.status).json(response.data);
+    res.status(200).json(response.data);
   } catch (err) {
     console.error(err);
-    res.status(response.status).json(response.data);
+    res.status(500).json({ error: true });
   }
 });
 
